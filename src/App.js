@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+const App = () => {
+  const [data, setData] = useState({
+    email: "",
+    password: "",
+  });
+  const changeHandler = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (data.password.length < 5) {
+      alert("Provide valid password");
+    }
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <center>
+        <form onSubmit={submitHandler}>
+          <label style={{ color: "blue", fontFamily: "Tahoma" }}>E-Mail:</label>
+          <input type="email" name="email" onChange={changeHandler} /> <br />
+          <br />
+          <label>Password:</label>
+          <input
+            type="password"
+            name="password"
+            onChange={changeHandler}
+          ></input>{" "}
+          <br />
+          <br />
+          <input type="submit" value="Login" />
+        </form>
+      </center>
     </div>
   );
-}
+};
 
 export default App;
