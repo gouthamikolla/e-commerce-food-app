@@ -1,37 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
+import Orders from "./Orders";
 
 const App = () => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-  });
-  const changeHandler = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
-  };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (data.password.length < 5) {
-      alert("Provide valid password");
-    }
-  };
   return (
     <div>
-      <center>
-        <form onSubmit={submitHandler}>
-          <label style={{ color: "blue", fontFamily: "Tahoma" }}>E-Mail:</label>
-          <input type="email" name="email" onChange={changeHandler} /> <br />
-          <br />
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            onChange={changeHandler}
-          ></input>{" "}
-          <br />
-          <br />
-          <input type="submit" value="Login" />
-        </form>
-      </center>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/orders" element={<Orders />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
